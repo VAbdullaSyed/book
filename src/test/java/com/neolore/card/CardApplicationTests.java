@@ -1,4 +1,4 @@
-package com.zilch.card;
+package com.neolore.card;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

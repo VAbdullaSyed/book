@@ -1,0 +1,58 @@
+spring:
+  logging:
+    level:
+      software:
+        amazon:
+          jdbc: INFO
+          jdbc.states: INFO
+      example: TRACE
+      liquibase: TRACE
+  jpa:
+    properties:
+      hibernate:
+        ddl-auto: none
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  liquibase:
+    contexts: test
+    defaultSchema: public
+    enabled: false
+    liquibaseSchema: public
+    url: jdbc:aws-wrapper:postgresql://card.cluster-cbtenpqgvzgi.eu-west-2.rds.amazonaws.com:5432/postgres
+    user: postgres
+    password: test12345
+    driver-class-name: software.amazon.jdbc.Driver
+  cloud:
+    aws:
+      credentials:
+        profile:
+          name: school
+  datasource:
+    writer-datasource:
+      url: jdbc:aws-wrapper:postgresql://card.cluster-cbtenpqgvzgi.eu-west-2.rds.amazonaws.com:5432/postgres
+      username: postgres
+      password: test12345
+      driver-class-name: software.amazon.jdbc.Driver
+      type: org.springframework.jdbc.datasource.SimpleDriverDataSource
+    load-balanced-reader-datasource:
+      url: jdbc:aws-wrapper:postgresql://card.cluster-ro-cbtenpqgvzgi.eu-west-2.rds.amazonaws.com:5432/postgres?readerInitialConnectionHostSelectorStrategy=roundRobin
+      username: postgres
+      password: test12345
+      driver-class-name: software.amazon.jdbc.Driver
+      type: org.springframework.jdbc.datasource.SimpleDriverDataSource
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include=*:
+#  datasource:
+#    driver-class-name: org.postgresql.Driver
+#    url: jdbc:postgresql://database-1.cbtenpqgvzgi.eu-west-2.rds.amazonaws.com/postgres
+#    username: postgres
+#    password: test1234
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    generate-ddl: true
+#  autoconfigure:
+#    exclude: org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration
