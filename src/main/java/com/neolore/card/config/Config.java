@@ -14,14 +14,9 @@
  * limitations under the License.
  */
 
-package com.neolore.card;
+package com.neolore.card.config;
 
-import com.neolore.card.config.RoutingDataSource;
-import com.neolore.card.config.ShouldRetryTransactionException;
-import com.zaxxer.hikari.HikariConfig;
-import java.util.Arrays;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 import jakarta.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import org.hibernate.exception.JDBCConnectionException;
@@ -31,26 +26,15 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.dao.DataAccessException;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.hibernate5.HibernateExceptionTranslator;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-import software.amazon.jdbc.HikariPooledConnectionProvider;
-import software.amazon.jdbc.HostSpec;
-import software.amazon.jdbc.profile.ConfigurationProfileBuilder;
-import software.amazon.jdbc.profile.ConfigurationProfilePresetCodes;
 
 @Configuration
-@EnableTransactionManagement
-@EnableAspectJAutoProxy
-@ComponentScan("com.neolore")
 public class Config {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Config.class);
