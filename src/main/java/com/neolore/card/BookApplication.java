@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class BookApplication {
 
 	public static void main(String[] args) {
-		System.out.println("Hello");
+		System.out.println("Hello -- Java");
 		SpringApplication.run(BookApplication.class, args);
 	}
 

@@ -98,23 +98,23 @@ public class Config {
   public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
     return new JpaTransactionManager(entityManagerFactory);
   }
-
-  @Bean
-  public HibernateExceptionTranslator hibernateExceptionTranslator(){
-    return new HibernateExceptionTranslator() {
-      @Override
-      public DataAccessException translateExceptionIfPossible(RuntimeException ex) {
-        // We'd like to retry all transactions that have failed due to OBJC connection. This includes
-        // failover exceptions (FailoverSQLException).
-        // Feel free to adjust the following condition according to your cases.
-        if (ex.getCause() != null
-            && ex.getCause() instanceof JDBCConnectionException) {
-          return new ShouldRetryTransactionException(ex);
-        }
-        return super.translateExceptionIfPossible(ex);
-      }
-    };
-  }
+//
+//  @Bean
+//  public HibernateExceptionTranslator hibernateExceptionTranslator(){
+//    return new HibernateExceptionTranslator() {
+//      @Override
+//      public DataAccessException translateExceptionIfPossible(RuntimeException ex) {
+//        // We'd like to retry all transactions that have failed due to OBJC connection. This includes
+//        // failover exceptions (FailoverSQLException).
+//        // Feel free to adjust the following condition according to your cases.
+//        if (ex.getCause() != null
+//            && ex.getCause() instanceof JDBCConnectionException) {
+//          return new ShouldRetryTransactionException(ex);
+//        }
+//        return super.translateExceptionIfPossible(ex);
+//      }
+//    };
+//  }
 
   @Bean
   public DataSource dataSource(
